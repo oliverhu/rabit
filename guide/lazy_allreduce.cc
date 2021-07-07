@@ -25,7 +25,7 @@ int main(int argc, char *argv[]) {
   Allreduce<op::Max>(&a[0], N, prepare);
   printf("@node[%d] after-allreduce-sum: a={%d, %d, %d}\n",
          rabit::GetRank(), a[0], a[1], a[2]);
-  // rum second allreduce
+  // run second allreduce
   Allreduce<op::Sum>(&a[0], N);
   printf("@node[%d] after-allreduce-max: a={%d, %d, %d}\n",
          rabit::GetRank(), a[0], a[1], a[2]);

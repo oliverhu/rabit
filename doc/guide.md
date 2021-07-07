@@ -154,7 +154,7 @@ Rabit is a reliable and portable library for distributed machine learning progra
 Use Rabit API
 -------------
 This section introduces topics about how to use rabit API.
-You can always refer to [API Documentation](http://homes.cs.washington.edu/~tqchen/rabit/doc) for definition of each functions.
+You can always refer to [API Documentation](https://rabit.readthedocs.io/en/latest/python_api.html) for definition of each functions.
 This section trys to gives examples of different aspectes of rabit API.
 
 #### Structure of a Rabit Program
@@ -234,7 +234,7 @@ int main(int argc, char *argv[]) {
   Allreduce<op::Max>(&a[0], N, prepare);
   printf("@node[%d] after-allreduce-sum: a={%d, %d, %d}\n",
          rabit::GetRank(), a[0], a[1], a[2]);
-  // rum second allreduce
+  // run second allreduce
   Allreduce<op::Sum>(&a[0], N);
   printf("@node[%d] after-allreduce-max: a={%d, %d, %d}\n",
          rabit::GetRank(), a[0], a[1], a[2]);
