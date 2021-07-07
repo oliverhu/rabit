@@ -254,7 +254,7 @@ You will find that the prepare function's print is only executed once and node 0
 
 You can also find python version of the example in [lazy_allreduce.py](../guide/lazy_allreduce.py), and run it using the followin command
 ```bash
-../tracker/rabit_demo.py -n 2 lazy_allreduce.py mock=0,0,1,0
+python ../../dmlc-core/tracker/dmlc-submit --cluster local  --num-workers 2 lazy_allreduce.mock mock=0,0,1,0 --local-num-attempt 1
 
 ```
 
