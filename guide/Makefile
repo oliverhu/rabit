@@ -2,7 +2,7 @@ export CC  = gcc
 export CXX = g++
 export MPICXX = mpicxx
 export LDFLAGS= -pthread -lm -L../lib
-export CFLAGS = -Wall -O3 -msse2 -std=c++11 -Wno-unknown-pragmas -fPIC -fopenmp -I../include
+export CFLAGS = -Wall -O3 -msse2 -std=c++11 -Wno-unknown-pragmas -fPIC -fopenmp -I../include -I../../dmlc-core/include
 
 .PHONY: clean all lib libmpi
 BIN = basic.rabit broadcast.rabit
@@ -17,7 +17,7 @@ $(BIN) :
 	$(CXX) $(CFLAGS) -o $@ $(filter %.cpp %.o %.c %.cc %.a,  $^) $(LDFLAGS)
 
 $(MOCKBIN) :
-	$(CXX) $(CFLAGS) -std=c++11 -o $@ $(filter %.cpp %.o %.c %.cc,  $^) $(LDFLAGS) -lrabit_mock
+	$(CXX) $(CFLAGS) -std=c++11 -o $@ $(filter %.cpp %.o %.c %.cc,  $^) $(LDFLAGS) -lrabit_mock_static
 
 $(OBJ) :
 	$(CXX) -c $(CFLAGS) -o $@ $(firstword $(filter %.cpp %.c %.cc, $^) )
