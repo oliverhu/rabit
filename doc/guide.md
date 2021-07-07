@@ -2,7 +2,17 @@ Tutorial
 ========
 This is rabit's tutorial, a ***Reliable Allreduce and Broadcast Interface***.
 All the example codes are in the [guide](https://github.com/dmlc/rabit/blob/master/guide/) folder of the project.
-To run the examples locally, you will need to build them with ```make```.
+You first need to clone dmlc/dmlc-core to the parent folder of this repo.
+
+```
+mkdir build
+cd build
+cmake ..
+make
+cp *.a ../lib
+cd ../guide
+make
+```
 
 **List of Topics**
 * [What is Allreduce](#what-is-allreduce)
@@ -45,9 +55,11 @@ int main(int argc, char *argv[]) {
 ```
 You can run the example using the rabit_demo.py script. The following command
 starts the rabit program with two worker processes.
+
 ```bash
-../tracker/rabit_demo.py -n 2 basic.rabit
+python ../../dmlc-core/tracker/dmlc-submit --cluster local  --num-workers 3 basic.rabit
 ```
+
 This will start two processes, one process with rank 0 and the other with rank 1, both processes run the same code.
 The ```rabit::GetRank()``` function returns the rank of current process.
 
@@ -379,5 +391,5 @@ Rabit Timeout
 In certain cases, rabit cluster may suffer lack of resources to retry failed workers.
 Thanks to fault tolerant assumption with infinite retry, it might cause entire cluster hang infinitely.
 We introduce sidecar thread which runs when rabit fault tolerant runtime observed allreduce/broadcast errors.
-By default, it will wait for 30 mins before all workers program exit. 
+By default, it will wait for 30 mins before all workers program exit.
 User can opt-in this feature and change treshold by passing rabit_timeout=true and rabit_timeout_sec=x (in seconds).
